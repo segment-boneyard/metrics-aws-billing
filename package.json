@@ -1,0 +1,17 @@
+{
+  "name": "dashboards-aws-billing",
+  "version": "0.0.2",
+  "lib": "./lib",
+  "repository": "git://github.com/segmentio/dashboards-aws-billing.git",
+  "description": "AWS billing plugin for segmentio/dashboards",
+  "keywords": [
+    "dashboards",
+    "aws",
+    "billing",
+    "API"
+  ],
+  "dependencies": {
+    "aws-billing": "0.0.2",
+    "debug": "^0.8.1"
+  }
+}
