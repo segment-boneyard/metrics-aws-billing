@@ -26,12 +26,12 @@ function plugin (accountId, key, secret, bucket, region) {
       if (err) return debug('failed to query aws billing: %s', err);
       debug('succesfully queried aws billing');
       var fraction = new Date().getDate() / 30; // monthly fraction
-      metrics.set('aws billing total', invoice.total);
-      metrics.set('aws billing rolling monthly total', invoice.total / fraction);
+      metrics.set('aws billing charge', invoice.total);
+      metrics.set('aws billing estimated monthly total', invoice.total / fraction);
       Object.keys(invoice.products).forEach(function (product) {
         var cost = invoice.products[product];
         metrics.set('aws billing ' + product + ' total', cost);
-        metrics.set('aws billing ' + product + ' rolling monthly total', cost / fraction);
+        metrics.set('aws billing ' + product + ' estimated monthly total', cost / fraction);
       });
     });
   };

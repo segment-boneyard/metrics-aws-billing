@@ -24,12 +24,12 @@ Metrics()
 The metrics exposed by this plugin are:
 
 - `aws billing total` - the total amount charged by AWS so far this billing period
-- `aws billing rolling monthly total` - rolling 30 day estimate of the total cost
+- `aws billing estimated monthly total` - rolling 30 day estimate of the total cost
 
 and for each `product`, it will expose the following metric:
 
 - `aws billing product total` - the total amount charged by AWS so far this billing period
-- `aws billing product rolling monthly total` - rolling 30 day estimate of the total cost
+- `aws billing product estimated monthly total` - rolling 30 day estimate of the total cost
 
 ![image](https://cloud.githubusercontent.com/assets/658544/5673633/d7c93a44-9753-11e4-9222-afc8a5601166.png)
 
