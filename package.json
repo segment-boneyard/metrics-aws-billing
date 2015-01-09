@@ -1,6 +1,6 @@
 {
   "name": "metrics-aws-billing",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": "git://github.com/segmentio/metrics-aws-billing.git",
   "description": "AWS billing plugin for segmentio/metrics",
   "keywords": [
@@ -10,7 +10,7 @@
     "API"
   ],
   "dependencies": {
-    "aws-billing": "0.0.2",
+    "aws-billing": "^1.0.0",
     "debug": "^0.8.1"
   }
 }

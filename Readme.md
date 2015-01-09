@@ -23,9 +23,15 @@ Metrics()
 
 The metrics exposed by this plugin are:
 
-- `aws billing ec2` - rolling 30 day estimate of ec2 costs
-- `aws billing nonEc2` - rolling 30 day estimate of non-ec2 costs
-- `aws billing total` - rolling 30 day estimate of AWS costs
+- `aws billing total` - the total amount charged by AWS so far this billing period
+- `aws billing rolling monthly total` - rolling 30 day estimate of the total cost
+
+and for each `product`, it will expose the following metric:
+
+- `aws billing product total` - the total amount charged by AWS so far this billing period
+- `aws billing product rolling monthly total` - rolling 30 day estimate of the total cost
+
+![image](https://cloud.githubusercontent.com/assets/658544/5673633/d7c93a44-9753-11e4-9222-afc8a5601166.png)
 
 ## Quickstart
 
@@ -39,7 +45,9 @@ var geckoboard = require('geckoboard')('api-key');
 new Metrics()
   .every('1d', billing(accountId, key, secret, bucket, region))
   .use(function (metrics) {
-    metrics.on('aws billing total', geckoboard('widget-id').number);
+    metrics.on('aws billing total', function (metric) {
+      geckoboard(widget).number(metric.latest());
+    });
   });
 ```
 

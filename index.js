@@ -22,12 +22,17 @@ function plugin (accountId, key, secret, bucket, region) {
   var billing = Billing(accountId, key, secret, bucket, region);
   return function awsBilling (metrics) {
     debug('querying aws billing ..');
-    billing(function (err, costs) {
+    billing(function (err, invoice) {
       if (err) return debug('failed to query aws billing: %s', err);
       debug('succesfully queried aws billing');
-      metrics.set('aws billing ec2', costs.ec2);
-      metrics.set('aws billing nonEc2', costs.nonEc2);
-      metrics.set('aws billing total', costs.total);
+      var fraction = new Date().getDate() / 30; // monthly fraction
+      metrics.set('aws billing total', invoice.total);
+      metrics.set('aws billing rolling monthly total', invoice.total / fraction);
+      Object.keys(invoice.products).forEach(function (product) {
+        var cost = invoice.products[product];
+        metrics.set('aws billing ' + product + ' total', cost);
+        metrics.set('aws billing ' + product + ' rolling monthly total', cost / fraction);
+      });
     });
   };
 }
