@@ -1,4 +1,8 @@
 
+1.0.2 - January 12, 2014
+-------------------------
+- fixed typo to `total`
+
 1.0.1 - January 9, 2014
 -------------------------
 - changed `rolling` to `estimated` in key names

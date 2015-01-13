@@ -26,7 +26,7 @@ function plugin (accountId, key, secret, bucket, region) {
       if (err) return debug('failed to query aws billing: %s', err);
       debug('succesfully queried aws billing');
       var fraction = new Date().getDate() / 30; // monthly fraction
-      metrics.set('aws billing charge', invoice.total);
+      metrics.set('aws billing total', invoice.total);
       metrics.set('aws billing estimated monthly total', invoice.total / fraction);
       Object.keys(invoice.products).forEach(function (product) {
         var cost = invoice.products[product];
